@@ -93,7 +93,7 @@ button:active{transform:scale(.98)}
     <div class="stamp" data-s="3">3</div>
   </div>
 
-  <form id="patientForm" action="#" method="POST">
+  <form id="patientForm" method="POST">
 
     <input type="hidden" name="Zoho Lead ID" id="leadIdHidden">
 
@@ -365,6 +365,16 @@ button:active{transform:scale(.98)}
 </div>
 
 <script>
+/*
+  ZOHO FLOW WEBHOOK
+  -----------------
+  Paste the Zoho Flow Webhook URL from:
+  Zoho Flow -> Webhook Trigger -> Configure
+
+  IMPORTANT: keep this URL private because it contains the Flow zapikey.
+*/
+const ZOHO_FLOW_WEBHOOK_URL = 'PASTE_YOUR_ZOHO_FLOW_WEBHOOK_URL_HERE';
+
 const steps=document.querySelectorAll('.step');
 const stamps=document.querySelectorAll('.stamp');
 const tracks=document.querySelectorAll('.track');
@@ -385,6 +395,8 @@ if(leadId){
   document.getElementById('leadIdDisplay').textContent=leadId;
   document.getElementById('leadIdBox').style.display='block';
   document.getElementById('leadIdHidden').value=leadId;
+}else{
+  console.warn('No Zoho Lead ID found in the URL.');
 }
 
 function wireChipGroup(groupId,hiddenId,toggleFn){
@@ -494,16 +506,42 @@ nextBtn.addEventListener('click',()=>{
       return;
     }
 
-    /*
-      IMPORTANT:
-      This version intentionally does NOT use the Zoho API or OAuth.
-      The Zoho Lead ID is carried in the form so the coordinator can
-      manually match the completed response to the existing Lead.
-      The actual response-delivery method will be added separately.
-    */
-    form.style.display='none';
-    journey.style.display='none';
-    successCard.style.display='block';
+    // The existing Lead must be identified by its Zoho Lead ID.
+    if(!leadId){
+      alert('This follow-up link is missing the Zoho Lead ID. Please use the link sent by the patient coordinator.');
+      return;
+    }
+
+    if(!ZOHO_FLOW_WEBHOOK_URL || ZOHO_FLOW_WEBHOOK_URL === 'PASTE_YOUR_ZOHO_FLOW_WEBHOOK_URL_HERE'){
+      alert('The Zoho Flow webhook URL has not been configured yet.');
+      return;
+    }
+
+    // Send the complete form as FORM DATA, matching the Webhook Trigger setting.
+    const formData = new FormData(form);
+    formData.set('Zoho Lead ID', leadId);
+
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Submitting...';
+
+    try{
+      await fetch(ZOHO_FLOW_WEBHOOK_URL,{
+        method:'POST',
+        body:new URLSearchParams(formData),
+        mode:'no-cors'
+      });
+
+      // Zoho Flow is configured for FORM DATA. The browser cannot inspect a
+      // no-cors response, but the POST request is dispatched to the webhook.
+      form.style.display='none';
+      journey.style.display='none';
+      successCard.style.display='block';
+    }catch(err){
+      console.error('Zoho Flow submission error:',err);
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Submit details';
+      alert('We could not submit your details. Please check your internet connection and try again.');
+    }
     return;
   }
 
