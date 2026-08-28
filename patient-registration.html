@@ -32,12 +32,29 @@
     margin:0 auto;
     padding:28px 20px 60px;
   }
-  .brandmark{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    margin-bottom:22px;
-  }
+.brandmark{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:12px;
+  margin-bottom:22px;
+}
+
+.brandmark img{
+  width:110px;
+  height:auto;
+  display:block;
+}
+
+.brandmark span{
+  font-size:18px;
+  letter-spacing:0;
+  text-transform:none;
+  color:var(--ink);
+  font-weight:500;
+  line-height:1.35;
+}
   .brandmark .dot{
     width:10px;height:10px;border-radius:50%;
     background:var(--teal);
@@ -280,8 +297,10 @@
 <body>
 <div class="wrap">
 
-  <div class="brandmark"><span class="dot"></span><span>International Patient Services</span></div>
-  <h1>Begin your care journey</h1>
+  <div class="brandmark">
+  <img src="SMSIMSR.png" alt="SMSIMSR Logo">
+  <span>Sri Madhusudan Sai Institute of Medical Sciences and Research</span>
+</div> <h1>Begin your care journey</h1>
   <p class="sub">Tell us a little about you and what brings you here. A patient coordinator will respond within one business day.</p>
 
   <div class="journey" id="journey">
