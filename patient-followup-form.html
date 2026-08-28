@@ -33,8 +33,6 @@ h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,7vw,36px);l
 .field{margin-bottom:18px}
 .field label{display:block;font-size:13.5px;font-weight:500;margin-bottom:7px;color:var(--ink)}
 .field label .opt{color:var(--ink-soft);font-weight:400;font-size:12.5px}
-.mandatory-note{text-align:center;color:var(--ink-soft);font-size:12.5px;margin:-10px 0 18px}
-.mandatory-note strong{font-weight:600}
 .row2{display:flex;gap:12px}.row2 .field{flex:1;min-width:0}
 input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;padding:12px 13px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px;color:var(--ink);background:#FCFDFC;transition:border-color .15s ease,box-shadow .15s ease}
 textarea{resize:vertical;min-height:88px}
@@ -77,7 +75,6 @@ button:active{transform:scale(.98)}
 
   <h1>Begin your care journey</h1>
   <p class="sub">Please complete the details below so our patient coordinator can prepare your care plan.</p>
-  <p class="mandatory-note"><strong>*</strong> indicates a mandatory field.</p>
 
   <!-- Zoho Lead ID comes only from the URL. The patient does not type it. -->
   <div class="lead-id" id="leadIdBox" style="display:none">
@@ -138,28 +135,6 @@ button:active{transform:scale(.98)}
           <div class="err">Please enter your country</div>
         </div>
 
-        <div class="field" data-req>
-          <label>Date of birth *</label>
-          <input type="date" name="Date of Birth">
-          <div class="err">Please enter your date of birth</div>
-        </div>
-
-        <div class="row2">
-          <div class="field" data-req>
-            <label>Gender *</label>
-            <select name="Gender">
-              <option value="">Select...</option><option>Male</option><option>Female</option>
-              <option>Other</option><option>Prefer not to say</option>
-            </select>
-            <div class="err">Please select your gender</div>
-          </div>
-          <div class="field" data-req>
-            <label>Nationality *</label>
-            <input type="text" name="Nationality" autocomplete="country-name">
-            <div class="err">Please enter your nationality</div>
-          </div>
-        </div>
-
         <div class="field">
           <label>Preferred language <span class="opt">(optional)</span></label>
           <select name="Preferred Language">
@@ -209,7 +184,35 @@ button:active{transform:scale(.98)}
           <input type="hidden" name="Urgency" id="urgencyValue">
         </div>
 
+        <div class="field">
+          <label>Estimated budget <span class="opt">(optional)</span></label>
+          <select name="Estimated Budget">
+            <option value="">Prefer not to say</option>
+            <option>Under $5,000</option>
+            <option>$5,000–$15,000</option>
+            <option>$15,000–$30,000</option>
+            <option>$30,000+</option>
+          </select>
+        </div>
 
+        <div class="field">
+          <label>Date of birth <span class="opt">(optional)</span></label>
+          <input type="date" name="Date of Birth">
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label>Gender <span class="opt">(optional)</span></label>
+            <select name="Gender">
+              <option value="">Select...</option><option>Male</option><option>Female</option>
+              <option>Other</option><option>Prefer not to say</option>
+            </select>
+          </div>
+          <div class="field">
+            <label>Nationality <span class="opt">(optional)</span></label>
+            <input type="text" name="Nationality">
+          </div>
+        </div>
       </div>
 
       <!-- STEP 3: travel/payment/follow-up details -->
@@ -321,17 +324,6 @@ button:active{transform:scale(.98)}
           </div>
         </div>
 
-        <div class="field">
-          <label>Estimated budget <span class="opt">(optional)</span></label>
-          <select name="Estimated Budget">
-            <option value="">Prefer not to say</option>
-            <option>Under $5,000</option>
-            <option>$5,000–$15,000</option>
-            <option>$15,000–$30,000</option>
-            <option>$30,000+</option>
-          </select>
-        </div>
-
         <div class="review-list" id="reviewList"></div>
 
         <label class="consent">
@@ -428,14 +420,15 @@ function buildReview(){
     ['WhatsApp',val('WhatsApp Number')],
     ['Email',val('Email')],
     ['Country',val('Country')],
-    ['Date of birth',val('Date of Birth')],
-    ['Gender',val('Gender')],
-    ['Nationality',val('Nationality')],
-    ['Preferred language',val('Preferred Language')],
     ['Speciality',val('Speciality')],
+    ['Preferred language',val('Preferred Language')],
     ['Initial clinical assessment',val('Initial Clinical Assessment')],
     ['Additional enquiry',val('Additional Enquiry Notes')],
     ['Urgency',val('Urgency')],
+    ['Estimated budget',val('Estimated Budget')],
+    ['Date of birth',val('Date of Birth')],
+    ['Gender',val('Gender')],
+    ['Nationality',val('Nationality')],
     ['Passport status',val('Passport Status')],
     ['Passport number',val('Passport Number')],
     ['Passport expiry',val('Passport Expiry')],
@@ -450,7 +443,6 @@ function buildReview(){
     ['Currency',val('Currency')],
     ['Broker involved',val('Broker Involved')],
     ['Broker / agent',val('Broker Name')],
-    ['Estimated budget',val('Estimated Budget')],
     ['Referred by',val('Referred by')]
   ];
   list.innerHTML='';
