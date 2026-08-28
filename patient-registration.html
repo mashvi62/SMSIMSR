@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Begin Your Care Journey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14302B;
+    --ink-soft:#3A5750;
+    --paper:#EEF2EC;
+    --card:#FFFFFF;
+    --teal:#2E7D74;
+    --teal-dark:#1E5850;
+    --gold:#B98B33;
+    --line:#D8DED6;
+    --error:#B3402E;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    font-family:'IBM Plex Sans', sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{
+    max-width:520px;
+    margin:0 auto;
+    padding:28px 20px 60px;
+  }
+  .brandmark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .brandmark .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--teal);
+  }
+  .brandmark span{
+    font-size:13px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    font-weight:500;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(28px,7vw,36px);
+    line-height:1.12;
+    margin:0 0 10px;
+    letter-spacing:-0.01em;
+  }
+  .sub{
+    color:var(--ink-soft);
+    font-size:15.5px;
+    line-height:1.5;
+    margin:0 0 28px;
+    max-width:42ch;
+  }
+
+  /* Journey / passport-stamp progress */
+  .journey{
+    display:flex;
+    align-items:center;
+    margin-bottom:30px;
+    padding:0 4px;
+  }
+  .stamp{
+    width:34px;height:34px;
+    border-radius:50%;
+    border:2px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces', serif;
+    font-size:14px;
+    font-weight:600;
+    color:var(--ink-soft);
+    background:var(--card);
+    flex-shrink:0;
+    transition:all .35s ease;
+    position:relative;
+  }
+  .stamp.done{
+    border-color:var(--teal);
+    background:var(--teal);
+    color:#fff;
+    transform:rotate(-6deg) scale(1.02);
+  }
+  .stamp.active{
+    border-color:var(--gold);
+    color:var(--gold);
+    box-shadow:0 0 0 4px rgba(185,139,51,.14);
+  }
+  .track{
+    flex:1;
+    height:0;
+    border-top:2px dashed var(--line);
+    margin:0 6px;
+  }
+  .track.done{ border-top-color:var(--teal); }
+
+  .step-label{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    text-transform:uppercase;
+    letter-spacing:.07em;
+    margin-bottom:6px;
+    font-weight:500;
+  }
+
+  .card{
+    background:var(--card);
+    border-radius:var(--radius);
+    padding:24px 22px 26px;
+    box-shadow:0 1px 2px rgba(20,48,43,.04), 0 8px 24px rgba(20,48,43,.06);
+  }
+
+  .field{ margin-bottom:18px; }
+  .field label{
+    display:block;
+    font-size:13.5px;
+    font-weight:500;
+    margin-bottom:7px;
+    color:var(--ink);
+  }
+  .field label .opt{
+    color:var(--ink-soft);
+    font-weight:400;
+    font-size:12.5px;
+  }
+  .row2{ display:flex; gap:12px; }
+  .row2 .field{ flex:1; min-width:0; }
+
+  input[type=text], input[type=email], input[type=tel], select, textarea{
+    width:100%;
+    padding:12px 13px;
+    border:1.5px solid var(--line);
+    border-radius:10px;
+    font-family:inherit;
+    font-size:15px;
+    color:var(--ink);
+    background:#FCFDFC;
+    transition:border-color .15s ease, box-shadow .15s ease;
+  }
+  textarea{ resize:vertical; min-height:88px; }
+  input:focus, select:focus, textarea:focus{
+    outline:none;
+    border-color:var(--teal);
+    box-shadow:0 0 0 3px rgba(46,125,116,.14);
+  }
+  .err{
+    color:var(--error);
+    font-size:12.5px;
+    margin-top:5px;
+    display:none;
+  }
+  .field.invalid input, .field.invalid select, .field.invalid textarea{
+    border-color:var(--error);
+  }
+  .field.invalid .err{ display:block; }
+
+  .chip-group{ display:flex; flex-wrap:wrap; gap:8px; }
+  .chip{
+    padding:9px 14px;
+    border:1.5px solid var(--line);
+    border-radius:999px;
+    font-size:13.5px;
+    cursor:pointer;
+    background:#FCFDFC;
+    color:var(--ink-soft);
+    transition:all .15s ease;
+    user-select:none;
+  }
+  .chip.selected{
+    border-color:var(--teal);
+    background:var(--teal);
+    color:#fff;
+  }
+
+  .nav-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-top:24px;
+    gap:12px;
+  }
+  button{
+    font-family:inherit;
+    font-size:15px;
+    font-weight:600;
+    border-radius:10px;
+    padding:13px 22px;
+    border:none;
+    cursor:pointer;
+    transition:transform .12s ease, opacity .15s ease;
+  }
+  button:active{ transform:scale(.98); }
+  .btn-primary{
+    background:var(--teal-dark);
+    color:#fff;
+    flex:1;
+  }
+  .btn-primary:hover{ background:var(--teal); }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink-soft);
+    padding:13px 10px;
+  }
+  .btn-primary[disabled]{ opacity:.5; cursor:not-allowed; }
+
+  .consent{
+    display:flex;
+    gap:10px;
+    align-items:flex-start;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    line-height:1.5;
+    margin-bottom:20px;
+  }
+  .consent input{ width:auto; margin-top:3px; flex-shrink:0; }
+
+  .review-list{ margin-bottom:20px; }
+  .review-row{
+    display:flex;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:14px;
+  }
+  .review-row:last-child{ border-bottom:none; }
+  .review-row .k{ color:var(--ink-soft); flex-shrink:0; }
+  .review-row .v{ text-align:right; font-weight:500; }
+
+  .step{ display:none; }
+  .step.visible{ display:block; }
+
+  .success{
+    text-align:center;
+    padding:20px 4px 4px;
+  }
+  .success .mark{
+    width:56px;height:56px;
+    border-radius:50%;
+    background:var(--teal);
+    color:#fff;
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;
+    font-size:26px;
+    transform:rotate(-6deg);
+  }
+  .success h2{
+    font-family:'Fraunces', serif;
+    font-size:24px;
+    margin:0 0 10px;
+  }
+  .success p{
+    color:var(--ink-soft);
+    font-size:14.5px;
+    line-height:1.55;
+    max-width:36ch;
+    margin:0 auto;
+  }
+
+  .footnote{
+    text-align:center;
+    font-size:12px;
+    color:var(--ink-soft);
+    margin-top:20px;
+    opacity:.7;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="brandmark"><span class="dot"></span><span>International Patient Services</span></div>
+  <h1>Begin your care journey</h1>
+  <p class="sub">Tell us a little about you and what brings you here. A patient coordinator will respond within one business day.</p>
+
+  <div class="journey" id="journey">
+    <div class="stamp active" data-s="1">1</div>
+    <div class="track" data-t="1"></div>
+    <div class="stamp" data-s="2">2</div>
+    <div class="track" data-t="2"></div>
+    <div class="stamp" data-s="3">3</div>
+  </div>
+
+  <!--
+    ZOHO CRM CONNECTION — read before publishing
+    ============================================
+    This form is built to submit to Zoho CRM's "Web-to-Lead" endpoint.
+    Zoho generates a unique form action URL + hidden security fields
+    (xnQsjsdp, zc_gad, xmIwtLD, etc.) specific to your org — these
+    cannot be created outside the Zoho Setup UI.
+
+    To connect it:
+    1. In Zoho CRM: Setup -> Developer Space -> Web Forms -> Leads -> Create Web Form
+    2. Choose these fields, in this order, matching the names in this
+       file's <input name="..."> attributes:
+         First Name, Last Name, Email, Mobile, Country of Origin,
+         Preferred Language, Procedure of Interest, Description
+         (used for "Patient Condition / Symptoms"), Budget Range,
+         Urgency Level, Lead Source (set a hidden default value,
+         e.g. "Website Form" or "WhatsApp Form")
+    3. Zoho generates a <form> tag with action="https://crm.zoho.../..."
+       and several hidden <input> fields, plus renames each visible
+       field's "name" attribute to something like "LEADCF123".
+    4. Replace the <form ...> opening tag below with Zoho's generated
+       one (keep this file's id="patientForm"), then copy each hidden
+       input Zoho generated into the marked spot below. Finally, update
+       each visible input's "name" attribute to match what Zoho
+       generated for that field (the label/order stays the same,
+       only the name= value changes).
+    5. Set "returnURL" (a hidden field Zoho provides) to a thank-you
+       page, or leave this file's built-in success screen in place by
+       submitting via fetch() instead of a native form POST — ask your
+       developer if you want the JS-based (no page reload) version.
+  -->
+  <form id="patientForm" action="#" method="POST">
+    <!-- Zoho hidden fields go here once generated, e.g.:
+    <input type="hidden" name="xnQsjsdp" value="...">
+    <input type="hidden" name="zc_gad" value="">
+    <input type="hidden" name="xmIwtLD" value="...">
+    <input type="hidden" name="actionType" value="TGVhZHM=">
+    <input type="hidden" name="returnURL" value="https://yoursite.com/thank-you">
+    -->
+    <input type="hidden" name="Lead Source" value="Website Form">
+
+    <div class="card">
+
+      <!-- STEP 1 — Contact & Origin -->
+      <div class="step visible" data-step="1">
+        <div class="step-label">Step 1 of 3 · About you</div>
+
+        <div class="row2">
+          <div class="field" data-req>
+            <label>First name</label>
+            <input type="text" name="First Name" autocomplete="given-name">
+            <div class="err">Please enter your first name</div>
+          </div>
+          <div class="field" data-req>
+            <label>Last name</label>
+            <input type="text" name="Last Name" autocomplete="family-name">
+            <div class="err">Please enter your last name</div>
+          </div>
+        </div>
+
+        <div class="field" data-req>
+          <label>WhatsApp / phone number</label>
+          <input type="tel" name="Mobile" placeholder="+971 5X XXX XXXX" autocomplete="tel">
+          <div class="err">Please enter a phone number we can reach you on</div>
+        </div>
+
+        <div class="field" data-req>
+          <label>Email address</label>
+          <input type="email" name="Email" autocomplete="email">
+          <div class="err">Please enter a valid email address</div>
+        </div>
+
+        <div class="field" data-req>
+          <label>Country you're writing from</label>
+          <input type="text" name="Country of Origin" placeholder="e.g. United Arab Emirates">
+          <div class="err">Please tell us your country</div>
+        </div>
+
+        <div class="field">
+          <label>Preferred language <span class="opt">(optional)</span></label>
+          <select name="Preferred Language">
+            <option value="">Select...</option>
+            <option>English</option>
+            <option>Arabic</option>
+            <option>French</option>
+            <option>Russian</option>
+            <option>Spanish</option>
+            <option>Swahili</option>
+            <option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Medical Details -->
+      <div class="step" data-step="2">
+        <div class="step-label">Step 2 of 3 · Your care needs</div>
+
+        <div class="field" data-req>
+          <label>What are you seeking treatment for?</label>
+          <select name="Procedure of Interest">
+            <option value="">Select a category...</option>
+            <option>Cardiac</option>
+            <option>Orthopedic</option>
+            <option>Cosmetic</option>
+            <option>Fertility/IVF</option>
+            <option>Dental</option>
+            <option>Oncology</option>
+            <option>Transplant</option>
+            <option>Neurology</option>
+            <option>Bariatric</option>
+            <option>Other</option>
+          </select>
+          <div class="err">Please choose a category</div>
+        </div>
+
+        <div class="field">
+          <label>Tell us more <span class="opt">(symptoms, diagnosis, or what you're looking for)</span></label>
+          <textarea name="Description" placeholder="Share as much or as little as you're comfortable with — a coordinator will follow up with questions."></textarea>
+        </div>
+
+        <div class="field">
+          <label>How soon are you hoping to be seen? <span class="opt">(optional)</span></label>
+          <div class="chip-group" id="urgencyChips">
+            <div class="chip" data-value="Elective">No rush — exploring options</div>
+            <div class="chip" data-value="Semi-urgent">Within the next month</div>
+            <div class="chip" data-value="Urgent">As soon as possible</div>
+          </div>
+          <input type="hidden" name="Urgency Level">
+        </div>
+
+        <div class="field">
+          <label>Estimated budget <span class="opt">(optional, helps us tailor options)</span></label>
+          <select name="Budget Range">
+            <option value="">Prefer not to say</option>
+            <option>Under $5,000</option>
+            <option>$5,000–$15,000</option>
+            <option>$15,000–$30,000</option>
+            <option>$30,000+</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Review & Submit -->
+      <div class="step" data-step="3">
+        <div class="step-label">Step 3 of 3 · Review &amp; send</div>
+        <div class="review-list" id="reviewList"></div>
+
+        <label class="consent">
+          <input type="checkbox" id="consentBox">
+          <span>I agree to be contacted by phone, WhatsApp, or email about my inquiry, and understand my information will be handled confidentially in line with the hospital's privacy policy.</span>
+        </label>
+      </div>
+
+      <div class="nav-row">
+        <button type="button" class="btn-ghost" id="backBtn" style="visibility:hidden">Back</button>
+        <button type="button" class="btn-primary" id="nextBtn">Continue</button>
+      </div>
+    </div>
+  </form>
+
+  <div class="card success" id="successCard" style="display:none">
+    <div class="mark">&#10003;</div>
+    <h2>Thank you</h2>
+    <p>Your inquiry has been received. A patient coordinator will reach out within one business day &mdash; usually sooner.</p>
+  </div>
+
+  <p class="footnote">Your information is confidential and used only to coordinate your care.</p>
+</div>
+
+<script>
+  const steps = document.querySelectorAll('.step');
+  const stamps = document.querySelectorAll('.stamp');
+  const tracks = document.querySelectorAll('.track');
+  const nextBtn = document.getElementById('nextBtn');
+  const backBtn = document.getElementById('backBtn');
+  const form = document.getElementById('patientForm');
+  const successCard = document.getElementById('successCard');
+  let current = 1;
+  const total = steps.length;
+
+  // urgency chip selection
+  document.getElementById('urgencyChips').addEventListener('click', (e) => {
+    const chip = e.target.closest('.chip');
+    if(!chip) return;
+    document.querySelectorAll('#urgencyChips .chip').forEach(c => c.classList.remove('selected'));
+    chip.classList.add('selected');
+    document.querySelector('input[name="Urgency Level"]').value = chip.dataset.value;
+  });
+
+  function validateStep(stepEl){
+    let valid = true;
+    stepEl.querySelectorAll('.field[data-req]').forEach(f => {
+      const input = f.querySelector('input, select, textarea');
+      const isEmpty = !input.value || !input.value.trim();
+      const isBadEmail = input.type === 'email' && input.value && !/^\S+@\S+\.\S+$/.test(input.value);
+      if(isEmpty || isBadEmail){
+        f.classList.add('invalid');
+        valid = false;
+      } else {
+        f.classList.remove('invalid');
+      }
+    });
+    return valid;
+  }
+
+  function updateJourney(){
+    stamps.forEach(s => {
+      const n = parseInt(s.dataset.s);
+      s.classList.remove('done','active');
+      if(n < current) s.classList.add('done');
+      else if(n === current) s.classList.add('active');
+    });
+    tracks.forEach(t => {
+      const n = parseInt(t.dataset.t);
+      t.classList.toggle('done', n < current);
+    });
+  }
+
+  function buildReview(){
+    const list = document.getElementById('reviewList');
+    const fieldsToShow = [
+      ['First Name','Name'], ['Last Name', null],
+      ['Email','Email'], ['Mobile','Phone'],
+      ['Country of Origin','Country'],
+      ['Procedure of Interest','Seeking care for'],
+      ['Urgency Level','Timing']
+    ];
+    list.innerHTML = '';
+    const first = form.querySelector('[name="First Name"]').value;
+    const last = form.querySelector('[name="Last Name"]').value;
+    const rows = [
+      ['Name', (first + ' ' + last).trim()],
+      ['Email', form.querySelector('[name="Email"]').value],
+      ['Phone', form.querySelector('[name="Mobile"]').value],
+      ['Country', form.querySelector('[name="Country of Origin"]').value],
+      ['Seeking care for', form.querySelector('[name="Procedure of Interest"]').value || '—'],
+      ['Timing', form.querySelector('[name="Urgency Level"]').value || '—'],
+    ];
+    rows.forEach(([k,v]) => {
+      const row = document.createElement('div');
+      row.className = 'review-row';
+      row.innerHTML = `<span class="k">${k}</span><span class="v">${v || '—'}</span>`;
+      list.appendChild(row);
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    const currentStepEl = document.querySelector(`.step[data-step="${current}"]`);
+    if(!validateStep(currentStepEl)) return;
+
+    if(current === total){
+      // final submit
+      if(!document.getElementById('consentBox').checked){
+        alert('Please confirm you agree to be contacted before submitting.');
+        return;
+      }
+      // If Zoho action URL has been configured, submit normally.
+      if(form.getAttribute('action') && form.getAttribute('action') !== '#'){
+        form.submit();
+      } else {
+        // Demo/preview mode — no Zoho endpoint configured yet
+        form.style.display = 'none';
+        document.getElementById('journey').style.display = 'none';
+        successCard.style.display = 'block';
+      }
+      return;
+    }
+
+    current++;
+    steps.forEach(s => s.classList.toggle('visible', parseInt(s.dataset.step) === current));
+    backBtn.style.visibility = 'visible';
+    if(current === total){
+      buildReview();
+      nextBtn.textContent = 'Submit inquiry';
+    }
+    updateJourney();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  backBtn.addEventListener('click', () => {
+    if(current === 1) return;
+    current--;
+    steps.forEach(s => s.classList.toggle('visible', parseInt(s.dataset.step) === current));
+    backBtn.style.visibility = current === 1 ? 'hidden' : 'visible';
+    nextBtn.textContent = 'Continue';
+    updateJourney();
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+</script>
+</body>
+</html>
