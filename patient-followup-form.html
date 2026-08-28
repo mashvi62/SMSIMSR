@@ -209,6 +209,9 @@
   .contact-person a{ color:var(--teal-dark); text-decoration:none; }
 
   .step{ display:none; }
+  <div id="leadIdBox" style="display:none; margin:0 auto 10px; text-align:center;">
+  Zoho Lead ID: <strong id="leadIdDisplay"></strong>
+</div>
   .step.visible{ display:block; }
 
   .success{ text-align:center; padding:20px 4px 4px; }
@@ -527,6 +530,14 @@
   let current = 1;
   const total = steps.length;
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const leadId = urlParams.get('leadId');
+
+  if (leadId) {
+  document.getElementById('leadIdDisplay').textContent = leadId;
+  document.getElementById('leadIdBox').style.display = 'block';
+}
+  
   function wireChipGroup(groupId, hiddenName, toggleFn){
     const group = document.getElementById(groupId);
     if(!group) return;
