@@ -8,268 +8,65 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#14302B;
-  --ink-soft:#3A5750;
-  --paper:#EEF2EC;
-  --card:#FFFFFF;
-  --teal:#2E7D74;
-  --teal-dark:#1E5850;
-  --gold:#B98B33;
-  --line:#D8DED6;
-  --error:#B3402E;
-  --radius:14px;
+  --ink:#14302B;--ink-soft:#3A5750;--paper:#EEF2EC;--card:#FFFFFF;
+  --teal:#2E7D74;--teal-dark:#1E5850;--gold:#B98B33;--line:#D8DED6;
+  --error:#B3402E;--radius:14px;
 }
 *{box-sizing:border-box}
-body{
-  margin:0;
-  background:var(--paper);
-  font-family:'IBM Plex Sans',sans-serif;
-  color:var(--ink);
-  -webkit-font-smoothing:antialiased;
-}
-.wrap{
-  max-width:520px;
-  margin:0 auto;
-  padding:28px 20px 60px;
-}
-.brandmark{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  text-align:center;
-  gap:10px;
-  margin-bottom:22px;
-}
-.brandmark img{
-  width:100px;
-  height:auto;
-  display:block;
-}
-.brandmark span{
-  font-size:16px;
-  line-height:1.35;
-  color:var(--ink);
-  font-weight:600;
-  max-width:48ch;
-}
-h1{
-  font-family:'Fraunces',serif;
-  font-weight:600;
-  font-size:clamp(28px,7vw,36px);
-  line-height:1.12;
-  margin:0 0 10px;
-  letter-spacing:-.01em;
-}
-.sub{
-  color:var(--ink-soft);
-  font-size:15.5px;
-  line-height:1.5;
-  margin:0 0 28px;
-  max-width:42ch;
-}
-.lead-id{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:10px;
-  padding:10px 12px;
-  margin:0 0 22px;
-  text-align:center;
-  font-size:13px;
-  color:var(--ink-soft);
-}
+body{margin:0;background:var(--paper);font-family:'IBM Plex Sans',sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.wrap{max-width:520px;margin:0 auto;padding:28px 20px 60px}
+.brandmark{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;margin-bottom:22px}
+.brandmark img{width:100px;height:auto;display:block}
+.brandmark span{font-size:16px;line-height:1.35;color:var(--ink);font-weight:600;max-width:48ch}
+h1{font-family:'Fraunces',serif;font-weight:600;font-size:clamp(28px,7vw,36px);line-height:1.12;margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--ink-soft);font-size:15.5px;line-height:1.5;margin:0 0 20px;max-width:42ch}
+.lead-id{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:0 0 22px;text-align:center;font-size:13px;color:var(--ink-soft)}
 .lead-id strong{color:var(--ink)}
-.journey{
-  display:flex;
-  align-items:center;
-  margin-bottom:30px;
-  padding:0 4px;
-}
-.stamp{
-  width:34px;height:34px;
-  border-radius:50%;
-  border:2px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Fraunces',serif;
-  font-size:14px;
-  font-weight:600;
-  color:var(--ink-soft);
-  background:var(--card);
-  flex-shrink:0;
-  transition:all .35s ease;
-}
-.stamp.done{
-  border-color:var(--teal);
-  background:var(--teal);
-  color:#fff;
-  transform:rotate(-6deg) scale(1.02);
-}
-.stamp.active{
-  border-color:var(--gold);
-  color:var(--gold);
-  box-shadow:0 0 0 4px rgba(185,139,51,.14);
-}
-.track{
-  flex:1;height:0;
-  border-top:2px dashed var(--line);
-  margin:0 6px;
-}
+.journey{display:flex;align-items:center;margin-bottom:30px;padding:0 4px}
+.stamp{width:34px;height:34px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:14px;font-weight:600;color:var(--ink-soft);background:var(--card);flex-shrink:0;transition:all .35s ease}
+.stamp.done{border-color:var(--teal);background:var(--teal);color:#fff;transform:rotate(-6deg) scale(1.02)}
+.stamp.active{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 4px rgba(185,139,51,.14)}
+.track{flex:1;height:0;border-top:2px dashed var(--line);margin:0 6px}
 .track.done{border-top-color:var(--teal)}
-.step-label{
-  font-size:12.5px;
-  color:var(--ink-soft);
-  text-transform:uppercase;
-  letter-spacing:.07em;
-  margin-bottom:6px;
-  font-weight:500;
-}
-.card{
-  background:var(--card);
-  border-radius:var(--radius);
-  padding:24px 22px 26px;
-  box-shadow:0 1px 2px rgba(20,48,43,.04),0 8px 24px rgba(20,48,43,.06);
-}
+.step-label{font-size:12.5px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.07em;margin-bottom:18px;font-weight:500}
+.card{background:var(--card);border-radius:var(--radius);padding:24px 22px 26px;box-shadow:0 1px 2px rgba(20,48,43,.04),0 8px 24px rgba(20,48,43,.06)}
 .field{margin-bottom:18px}
-.field label{
-  display:block;
-  font-size:13.5px;
-  font-weight:500;
-  margin-bottom:7px;
-  color:var(--ink);
-}
-.field label .opt{
-  color:var(--ink-soft);
-  font-weight:400;
-  font-size:12.5px;
-}
-.row2{display:flex;gap:12px}
-.row2 .field{flex:1;min-width:0}
-input[type=text],input[type=date],select,textarea{
-  width:100%;
-  padding:12px 13px;
-  border:1.5px solid var(--line);
-  border-radius:10px;
-  font-family:inherit;
-  font-size:15px;
-  color:var(--ink);
-  background:#FCFDFC;
-  transition:border-color .15s ease,box-shadow .15s ease;
-}
+.field label{display:block;font-size:13.5px;font-weight:500;margin-bottom:7px;color:var(--ink)}
+.field label .opt{color:var(--ink-soft);font-weight:400;font-size:12.5px}
+.mandatory-note{text-align:center;color:var(--ink-soft);font-size:12.5px;margin:-10px 0 18px}
+.mandatory-note strong{font-weight:600}
+.row2{display:flex;gap:12px}.row2 .field{flex:1;min-width:0}
+input[type=text],input[type=email],input[type=tel],input[type=date],select,textarea{width:100%;padding:12px 13px;border:1.5px solid var(--line);border-radius:10px;font-family:inherit;font-size:15px;color:var(--ink);background:#FCFDFC;transition:border-color .15s ease,box-shadow .15s ease}
 textarea{resize:vertical;min-height:88px}
-input:focus,select:focus,textarea:focus{
-  outline:none;
-  border-color:var(--teal);
-  box-shadow:0 0 0 3px rgba(46,125,116,.14);
-}
-.err{
-  color:var(--error);
-  font-size:12.5px;
-  margin-top:5px;
-  display:none;
-}
-.field.invalid input,.field.invalid select,.field.invalid textarea{
-  border-color:var(--error);
-}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(46,125,116,.14)}
+.err{color:var(--error);font-size:12.5px;margin-top:5px;display:none}
+.field.invalid input,.field.invalid select,.field.invalid textarea{border-color:var(--error)}
 .field.invalid .err{display:block}
 .chip-group{display:flex;flex-wrap:wrap;gap:8px}
-.chip{
-  padding:9px 14px;
-  border:1.5px solid var(--line);
-  border-radius:999px;
-  font-size:13.5px;
-  cursor:pointer;
-  background:#FCFDFC;
-  color:var(--ink-soft);
-  transition:all .15s ease;
-  user-select:none;
-}
-.chip.selected{
-  border-color:var(--teal);
-  background:var(--teal);
-  color:#fff;
-}
-.yesno{display:flex;gap:8px}
-.yesno .chip{flex:1;text-align:center}
-.conditional{display:none;margin-top:14px;padding-top:2px}
-.conditional.visible{display:block}
-.nav-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:24px;
-  gap:12px;
-}
-button{
-  font-family:inherit;
-  font-size:15px;
-  font-weight:600;
-  border-radius:10px;
-  padding:13px 22px;
-  border:none;
-  cursor:pointer;
-  transition:transform .12s ease,opacity .15s ease;
-}
+.chip{padding:9px 14px;border:1.5px solid var(--line);border-radius:999px;font-size:13.5px;cursor:pointer;background:#FCFDFC;color:var(--ink-soft);transition:all .15s ease;user-select:none}
+.chip.selected{border-color:var(--teal);background:var(--teal);color:#fff}
+.yesno{display:flex;gap:8px}.yesno .chip{flex:1;text-align:center}
+.conditional{display:none;margin-top:14px;padding-top:2px}.conditional.visible{display:block}
+.nav-row{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px}
+button{font-family:inherit;font-size:15px;font-weight:600;border-radius:10px;padding:13px 22px;border:none;cursor:pointer;transition:transform .12s ease,opacity .15s ease}
 button:active{transform:scale(.98)}
-.btn-primary{background:var(--teal-dark);color:#fff;flex:1}
-.btn-primary:hover{background:var(--teal)}
+.btn-primary{background:var(--teal-dark);color:#fff;flex:1}.btn-primary:hover{background:var(--teal)}
 .btn-ghost{background:transparent;color:var(--ink-soft);padding:13px 10px}
 .review-list{margin-bottom:20px}
-.review-row{
-  display:flex;
-  justify-content:space-between;
-  gap:12px;
-  padding:10px 0;
-  border-bottom:1px solid var(--line);
-  font-size:14px;
-}
-.review-row:last-child{border-bottom:none}
-.review-row .k{color:var(--ink-soft);flex-shrink:0}
-.review-row .v{text-align:right;font-weight:500}
-.consent{
-  display:flex;
-  gap:10px;
-  align-items:flex-start;
-  font-size:13.5px;
-  color:var(--ink-soft);
-  line-height:1.5;
-  margin-bottom:20px;
-}
+.summary-page{display:none}.summary-page.visible{display:block}.summary-page h3{font-family:'Fraunces',serif;font-size:24px;margin:0 0 8px}.summary-page .summary-intro{color:var(--ink-soft);font-size:14px;line-height:1.5;margin:0 0 18px}
+.review-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
+.review-row:last-child{border-bottom:none}.review-row .k{color:var(--ink-soft);flex-shrink:0}.review-row .v{text-align:right;font-weight:500;word-break:break-word}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:20px}
 .consent input{width:auto;margin-top:3px;flex-shrink:0}
-.step{display:none}
-.step.visible{display:block}
+.step{display:none}.step.visible{display:block}
 .success{text-align:center;padding:20px 4px 4px}
-.success .mark{
-  width:56px;height:56px;border-radius:50%;
-  background:var(--teal);color:#fff;
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 18px;
-  font-size:26px;
-  transform:rotate(-6deg);
-}
-.success h2{
-  font-family:'Fraunces',serif;
-  font-size:24px;
-  margin:0 0 10px;
-}
-.success p{
-  color:var(--ink-soft);
-  font-size:14.5px;
-  line-height:1.55;
-  max-width:36ch;
-  margin:0 auto;
-}
-.footnote{
-  text-align:center;
-  font-size:12px;
-  color:var(--ink-soft);
-  margin-top:20px;
-  opacity:.7;
-}
-@media(max-width:520px){
-  .row2{flex-direction:column;gap:0}
-}
+.success .mark{width:56px;height:56px;border-radius:50%;background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-size:26px;transform:rotate(-6deg)}
+.success h2{font-family:'Fraunces',serif;font-size:24px;margin:0 0 10px}
+.success p{color:var(--ink-soft);font-size:14.5px;line-height:1.55;max-width:36ch;margin:0 auto}
+.footnote{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:20px;opacity:.7}
+@media(max-width:520px){.row2{flex-direction:column;gap:0}}
 </style>
 </head>
-
 <body>
 <div class="wrap">
 
@@ -279,14 +76,11 @@ button:active{transform:scale(.98)}
     <span>Sri Madhusudan Sai Institute of Medical Sciences and Research</span>
   </div>
 
-  <!-- Same main title as patient-registration.html -->
   <h1>Begin your care journey</h1>
-  <p class="sub">
-    A few more details will help your coordinator prepare your care plan.
-  </p>
+  <p class="sub">Please complete the details below so our patient coordinator can prepare your care plan.</p>
+  <p class="mandatory-note"><strong>*</strong> indicates mandatory fields.</p>
 
-  <!-- Zoho Lead ID is read from ?leadId=... in the URL.
-       It is displayed for identification but is NOT collected from the patient. -->
+  <!-- Zoho Lead ID comes only from the URL. The patient does not type it. -->
   <div class="lead-id" id="leadIdBox" style="display:none">
     Zoho Lead ID: <strong id="leadIdDisplay"></strong>
   </div>
@@ -299,56 +93,138 @@ button:active{transform:scale(.98)}
     <div class="stamp" data-s="3">3</div>
   </div>
 
-  <form id="patientForm" action="#" method="POST">
-
-    <!-- This is deliberately NOT a copy of patient-registration.html.
-         Name, phone, WhatsApp, email, country, language, speciality,
-         initial enquiry, urgency, budget and original enquiry notes are
-         NOT collected again on this follow-up form. -->
+  <form id="patientForm" method="POST">
 
     <input type="hidden" name="Zoho Lead ID" id="leadIdHidden">
 
     <div class="card">
 
-      <!-- STEP 1 — Personal details not collected on registration form -->
+      <!-- STEP 1: mandatory identity/contact details -->
       <div class="step visible" data-step="1">
-        <div class="step-label">Step 1 of 3 · A few more details</div>
+        <div class="step-label">Step 1 of 3 · Your details</div>
 
         <div class="row2">
           <div class="field" data-req>
-            <label>Date of birth</label>
-            <input type="date" name="Date of Birth">
-            <div class="err">Please enter your date of birth</div>
+            <label>First name *</label>
+            <input type="text" name="First Name" autocomplete="given-name" required>
+            <div class="err">Please enter your first name</div>
           </div>
-
           <div class="field" data-req>
-            <label>Gender</label>
-            <select name="Gender">
-              <option value="">Select...</option>
-              <option>Male</option>
-              <option>Female</option>
-              <option>Other</option>
-              <option>Prefer not to say</option>
-            </select>
-            <div class="err">Please select an option</div>
+            <label>Last name *</label>
+            <input type="text" name="Last Name" autocomplete="family-name" required>
+            <div class="err">Please enter your last name</div>
           </div>
         </div>
 
         <div class="field" data-req>
-          <label>Nationality</label>
-          <input type="text" name="Nationality" placeholder="e.g. Emirati, British, Nigerian">
-          <div class="err">Please tell us your nationality</div>
+          <label>Phone *</label>
+          <input type="tel" name="Phone" placeholder="+" autocomplete="tel" required>
+          <div class="err">Please enter a phone number</div>
+        </div>
+
+        <div class="field">
+          <label>WhatsApp number <span class="opt">(optional)</span></label>
+          <input type="tel" name="WhatsApp Number" placeholder="+" autocomplete="tel">
         </div>
 
         <div class="field" data-req>
-          <label>Do you currently hold a valid passport?</label>
+          <label>Email *</label>
+          <input type="email" name="Email" autocomplete="email" required>
+          <div class="err">Please enter a valid email address</div>
+        </div>
+
+        <div class="field" data-req>
+          <label>Country *</label>
+          <input type="text" name="Country" placeholder="e.g. United Arab Emirates" autocomplete="country-name" required>
+          <div class="err">Please enter your country</div>
+        </div>
+
+        <div class="field" data-req>
+          <label>Date of birth *</label>
+          <input type="date" name="Date of Birth" required>
+          <div class="err">Please enter your date of birth</div>
+        </div>
+
+        <div class="row2">
+          <div class="field" data-req>
+            <label>Gender *</label>
+            <select name="Gender" required>
+              <option value="">Select...</option><option>Male</option><option>Female</option>
+              <option>Other</option><option>Prefer not to say</option>
+            </select>
+            <div class="err">Please select your gender</div>
+          </div>
+          <div class="field" data-req>
+            <label>Nationality *</label>
+            <input type="text" name="Nationality" autocomplete="country-name" required>
+            <div class="err">Please enter your nationality</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Preferred language <span class="opt">(optional)</span></label>
+          <select name="Preferred Language">
+            <option value="">Select...</option>
+            <option>English</option><option>Arabic</option><option>French</option>
+            <option>Russian</option><option>Spanish</option><option>Swahili</option><option>Other</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- STEP 2: mandatory speciality + additional clinical details -->
+      <div class="step" data-step="2">
+        <div class="step-label">Step 2 of 3 · Your care needs</div>
+
+        <div class="field" data-req>
+          <label>Speciality *</label>
+          <select name="Speciality" required>
+            <option value="">Select a speciality...</option>
+            <option>Cardiology</option>
+            <option>CTVS</option>
+            <option>ENT</option>
+            <option>General Surgery</option>
+            <option>Genomics</option>
+            <option>Orthopaedics</option>
+            <option>Pain Medicine</option>
+          </select>
+          <div class="err">Please choose a speciality</div>
+        </div>
+
+        <div class="field">
+          <label>Initial clinical assessment <span class="opt">(optional)</span></label>
+          <textarea name="Initial Clinical Assessment" placeholder="Symptoms, diagnosis, investigations, or what you are looking for"></textarea>
+        </div>
+
+        <div class="field">
+          <label>Additional enquiry notes <span class="opt">(optional)</span></label>
+          <textarea name="Additional Enquiry Notes" placeholder="Anything else you would like the coordinator to know"></textarea>
+        </div>
+
+        <div class="field">
+          <label>How soon are you hoping to be seen? <span class="opt">(optional)</span></label>
+          <div class="chip-group" id="urgencyChips">
+            <div class="chip" data-value="Elective">No rush — exploring options</div>
+            <div class="chip" data-value="Semi-urgent">Within the next month</div>
+            <div class="chip" data-value="Urgent">As soon as possible</div>
+          </div>
+          <input type="hidden" name="Urgency" id="urgencyValue">
+        </div>
+
+
+      </div>
+
+      <!-- STEP 3: travel/payment/follow-up details; estimated budget is the final question -->
+      <div class="step" data-step="3">
+        <div class="step-label">Step 3 of 3 · Travel & payment</div>
+
+        <div class="field">
+          <label>Do you currently hold a valid passport? <span class="opt">(optional)</span></label>
           <div class="chip-group" id="passportChips">
             <div class="chip" data-value="Yes">Yes, valid</div>
             <div class="chip" data-value="Applying">Applying / renewing</div>
             <div class="chip" data-value="No">Not yet</div>
           </div>
           <input type="hidden" name="Passport Status" id="passportStatus">
-          <div class="err">Please select an option</div>
         </div>
 
         <div class="conditional" id="passportDetails">
@@ -365,24 +241,8 @@ button:active{transform:scale(.98)}
         </div>
 
         <div class="field">
-          <label>Will anyone be travelling with you? <span class="opt">(optional)</span></label>
-          <select name="Number of Travel Companions">
-            <option value="">Select...</option>
-            <option>Travelling alone</option>
-            <option>1 companion</option>
-            <option>2 companions</option>
-            <option>3+ companions</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- STEP 2 — New care/travel information -->
-      <div class="step" data-step="2">
-        <div class="step-label">Step 2 of 3 · Your care details</div>
-
-        <div class="field">
-          <label>Have you received treatment for this elsewhere? <span class="opt">(optional)</span></label>
-          <textarea name="Previous Treatment" placeholder="Any diagnoses, procedures, investigations or consultations so far"></textarea>
+          <label>Previous treatment <span class="opt">(optional)</span></label>
+          <textarea name="Previous Treatment" placeholder="Diagnoses, procedures, investigations or consultations so far"></textarea>
         </div>
 
         <div class="field">
@@ -396,7 +256,7 @@ button:active{transform:scale(.98)}
         </div>
 
         <div class="field">
-          <label>Preferred way to consult with a doctor first <span class="opt">(optional)</span></label>
+          <label>Preferred consultation mode <span class="opt">(optional)</span></label>
           <div class="chip-group" id="consultChips">
             <div class="chip" data-value="Video call">Video call</div>
             <div class="chip" data-value="Phone call">Phone call</div>
@@ -404,29 +264,19 @@ button:active{transform:scale(.98)}
           </div>
           <input type="hidden" name="Preferred Consultation Mode" id="consultMode">
         </div>
-      </div>
-
-      <!-- STEP 3 — Travel, payment and review -->
-      <div class="step" data-step="3">
-        <div class="step-label">Step 3 of 3 · Travel & payment</div>
 
         <div class="field">
           <label>Approximate travel date <span class="opt">(optional)</span></label>
           <input type="date" name="Approximate Travel Date">
         </div>
 
-        <div class="field" data-req>
-          <label>How do you expect to fund this treatment?</label>
+        <div class="field">
+          <label>How do you expect to fund this treatment? <span class="opt">(optional)</span></label>
           <select name="Payment Source" id="paymentSource">
             <option value="">Select...</option>
-            <option>Self</option>
-            <option>Insurance</option>
-            <option>Sponsor</option>
-            <option>Broker</option>
-            <option>Local Government Scheme</option>
-            <option>Other</option>
+            <option>Self</option><option>Insurance</option><option>Sponsor</option>
+            <option>Broker</option><option>Local Government Scheme</option><option>Other</option>
           </select>
-          <div class="err">Please select an option</div>
         </div>
 
         <div class="conditional" id="insuranceDetails">
@@ -445,12 +295,8 @@ button:active{transform:scale(.98)}
         <div class="field">
           <label>Preferred currency for quotes <span class="opt">(optional)</span></label>
           <select name="Currency">
-            <option value="">Select...</option>
-            <option>INR</option>
-            <option>USD</option>
-            <option>GBP</option>
-            <option>EUR</option>
-            <option>Other</option>
+            <option value="">Select...</option><option>INR</option><option>USD</option>
+            <option>GBP</option><option>EUR</option><option>Other</option>
           </select>
         </div>
 
@@ -476,14 +322,29 @@ button:active{transform:scale(.98)}
           </div>
         </div>
 
+        <div class="field">
+          <label>Estimated budget <span class="opt">(optional)</span></label>
+          <select name="Estimated Budget">
+            <option value="">Prefer not to say</option>
+            <option>Under $5,000</option>
+            <option>$5,000–$15,000</option>
+            <option>$15,000–$30,000</option>
+            <option>$30,000+</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- SUMMARY PAGE: shown on a new page after Estimated budget -->
+      <div class="summary-page" id="summaryPage">
+        <div class="step-label">Final page · Review & confirmation</div>
+        <h3>Please review your details</h3>
+        <p class="summary-intro">Please check the information below before submitting your care enquiry.</p>
         <div class="review-list" id="reviewList"></div>
 
         <label class="consent">
           <input type="checkbox" id="consentBox">
-          <span>
-            I confirm these additional details are accurate to the best of my knowledge
-            and agree to be contacted about my care enquiry.
-          </span>
+          <span>I confirm these details are accurate to the best of my knowledge and agree to be contacted about my care enquiry.</span>
         </label>
       </div>
 
@@ -497,219 +358,234 @@ button:active{transform:scale(.98)}
   <div class="card success" id="successCard" style="display:none">
     <div class="mark">&#10003;</div>
     <h2>Thank you</h2>
-    <p>
-      Your additional details have been recorded for your care enquiry.
-      Your coordinator will follow up with you shortly.
-    </p>
+    <p>Your details have been recorded for your care enquiry. Your coordinator will follow up with you shortly.</p>
   </div>
 
-  <p class="footnote">
-    Your information is confidential and used only to coordinate your care.
-  </p>
+  <p class="footnote">Your information is confidential and used only to coordinate your care.</p>
 </div>
 
 <script>
-const steps = document.querySelectorAll('.step');
-const stamps = document.querySelectorAll('.stamp');
-const tracks = document.querySelectorAll('.track');
-const nextBtn = document.getElementById('nextBtn');
-const backBtn = document.getElementById('backBtn');
-const form = document.getElementById('patientForm');
-const successCard = document.getElementById('successCard');
+/*
+  ZOHO FLOW WEBHOOK
+  -----------------
+  Paste the Zoho Flow Webhook URL from:
+  Zoho Flow -> Webhook Trigger -> Configure
 
-let current = 1;
-const total = steps.length;
-
-/* Read the Zoho Lead ID from:
-   patient-followup-form.html?leadId=138723600000000000
+  IMPORTANT: keep this URL private because it contains the Flow zapikey.
 */
-const urlParams = new URLSearchParams(window.location.search);
-const leadId = urlParams.get('leadId');
+const ZOHO_FLOW_WEBHOOK_URL = 'PASTE_YOUR_ZOHO_FLOW_WEBHOOK_URL_HERE';
 
-if (leadId) {
-  document.getElementById('leadIdDisplay').textContent = leadId;
-  document.getElementById('leadIdBox').style.display = 'block';
-  document.getElementById('leadIdHidden').value = leadId;
+const steps=document.querySelectorAll('.step');
+const stamps=document.querySelectorAll('.stamp');
+const tracks=document.querySelectorAll('.track');
+const nextBtn=document.getElementById('nextBtn');
+const backBtn=document.getElementById('backBtn');
+const form=document.getElementById('patientForm');
+const successCard=document.getElementById('successCard');
+const summaryPage=document.getElementById('summaryPage');
+const journey=document.getElementById('journey');
+let current=1;
+const total=steps.length;
+let summaryMode=false;
+
+const urlParams=new URLSearchParams(window.location.search);
+const leadId=urlParams.get('leadId');
+
+if(leadId){
+  document.getElementById('leadIdDisplay').textContent=leadId;
+  document.getElementById('leadIdBox').style.display='block';
+  document.getElementById('leadIdHidden').value=leadId;
+}else{
+  console.warn('No Zoho Lead ID found in the URL.');
 }
 
-function wireChipGroup(groupId, hiddenId, toggleFn){
-  const group = document.getElementById(groupId);
-  if(!group) return;
-
-  group.addEventListener('click', (e) => {
-    const chip = e.target.closest('.chip');
-    if(!chip) return;
-
-    group.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+function wireChipGroup(groupId,hiddenId,toggleFn){
+  const group=document.getElementById(groupId);
+  if(!group)return;
+  group.addEventListener('click',(e)=>{
+    const chip=e.target.closest('.chip');
+    if(!chip)return;
+    group.querySelectorAll('.chip').forEach(c=>c.classList.remove('selected'));
     chip.classList.add('selected');
-
-    const hidden = document.getElementById(hiddenId);
-    if(hidden) hidden.value = chip.dataset.value;
-
-    if(toggleFn) toggleFn(chip.dataset.value);
+    const hidden=document.getElementById(hiddenId);
+    if(hidden)hidden.value=chip.dataset.value;
+    if(toggleFn)toggleFn(chip.dataset.value);
   });
 }
 
-wireChipGroup('passportChips','passportStatus',(val) => {
-  document.getElementById('passportDetails')
-    .classList.toggle('visible', val === 'Yes' || val === 'Applying');
+wireChipGroup('urgencyChips','urgencyValue');
+wireChipGroup('passportChips','passportStatus',(val)=>{
+  document.getElementById('passportDetails').classList.toggle('visible',val==='Yes'||val==='Applying');
 });
-
 wireChipGroup('consultChips','consultMode');
-
-wireChipGroup('brokerChips','brokerInvolved',(val) => {
-  document.getElementById('brokerDetails')
-    .classList.toggle('visible', val === 'Yes');
+wireChipGroup('brokerChips','brokerInvolved',(val)=>{
+  document.getElementById('brokerDetails').classList.toggle('visible',val==='Yes');
 });
-
-document.getElementById('paymentSource').addEventListener('change',(e) => {
-  document.getElementById('insuranceDetails')
-    .classList.toggle('visible', e.target.value === 'Insurance');
+document.getElementById('paymentSource').addEventListener('change',(e)=>{
+  document.getElementById('insuranceDetails').classList.toggle('visible',e.target.value==='Insurance');
 });
 
 function validateStep(stepEl){
-  let valid = true;
-
-  stepEl.querySelectorAll('.field[data-req]').forEach(f => {
-    const input = f.querySelector('input, select, textarea');
-    const chipGroup = f.querySelector('.chip-group');
-
-    let isEmpty;
-
-    if(chipGroup){
-      const hidden = f.querySelector('input[type=hidden]');
-      isEmpty = !hidden || !hidden.value;
-    } else {
-      isEmpty = !input || !input.value || !input.value.trim();
-    }
-
-    if(isEmpty){
-      f.classList.add('invalid');
-      valid = false;
-    } else {
-      f.classList.remove('invalid');
-    }
+  let valid=true;
+  stepEl.querySelectorAll('.field[data-req]').forEach(f=>{
+    const input=f.querySelector('input,select,textarea');
+    const isEmpty=!input || !input.value.trim();
+    const isBadEmail=input && input.type==='email' && input.value && !/^\S+@\S+\.\S+$/.test(input.value);
+    if(isEmpty||isBadEmail){f.classList.add('invalid');valid=false}
+    else f.classList.remove('invalid');
   });
-
   return valid;
 }
 
+function val(name){
+  const el=form.querySelector(`[name="${name}"]`);
+  return el ? (el.value || '—') : '—';
+}
+
 function buildReview(){
-  const list = document.getElementById('reviewList');
-
-  const rows = [
-    ['Zoho Lead ID', leadId || '—'],
-    ['Date of birth', form.querySelector('[name="Date of Birth"]').value || '—'],
-    ['Gender', form.querySelector('[name="Gender"]').value || '—'],
-    ['Nationality', form.querySelector('[name="Nationality"]').value || '—'],
-    ['Passport', form.querySelector('[name="Passport Status"]').value || '—'],
-    ['Travel companions', form.querySelector('[name="Number of Travel Companions"]').value || '—'],
-    ['Previous treatment', form.querySelector('[name="Previous Treatment"]').value || '—'],
-    ['Known allergies', form.querySelector('[name="Known Allergies"]').value || '—'],
-    ['Current medications', form.querySelector('[name="Current Medications"]').value || '—'],
-    ['Consultation mode', form.querySelector('[name="Preferred Consultation Mode"]').value || '—'],
-    ['Approximate travel date', form.querySelector('[name="Approximate Travel Date"]').value || '—'],
-    ['Payment source', form.querySelector('[name="Payment Source"]').value || '—'],
-    ['Insurance provider', form.querySelector('[name="Insurance Provider"]').value || '—'],
-    ['Currency', form.querySelector('[name="Currency"]').value || '—'],
-    ['Broker involved', form.querySelector('[name="Broker Involved"]').value || '—'],
-    ['Broker / agent', form.querySelector('[name="Broker Name"]').value || '—'],
-    ['Referred by', form.querySelector('[name="Referred by"]').value || '—']
+  const list=document.getElementById('reviewList');
+  const rows=[
+    ['Zoho Lead ID',leadId||'—'],
+    ['Name',(val('First Name')+' '+val('Last Name')).trim()],
+    ['Phone',val('Phone')],
+    ['WhatsApp',val('WhatsApp Number')],
+    ['Email',val('Email')],
+    ['Country',val('Country')],
+    ['Date of birth',val('Date of Birth')],
+    ['Gender',val('Gender')],
+    ['Nationality',val('Nationality')],
+    ['Preferred language',val('Preferred Language')],
+    ['Speciality',val('Speciality')],
+    ['Initial clinical assessment',val('Initial Clinical Assessment')],
+    ['Additional enquiry',val('Additional Enquiry Notes')],
+    ['Urgency',val('Urgency')],
+    ['Passport status',val('Passport Status')],
+    ['Passport number',val('Passport Number')],
+    ['Passport expiry',val('Passport Expiry')],
+    ['Previous treatment',val('Previous Treatment')],
+    ['Known allergies',val('Known Allergies')],
+    ['Current medications',val('Current Medications')],
+    ['Consultation mode',val('Preferred Consultation Mode')],
+    ['Approximate travel date',val('Approximate Travel Date')],
+    ['Payment source',val('Payment Source')],
+    ['Insurance provider',val('Insurance Provider')],
+    ['Policy number',val('Policy Number')],
+    ['Currency',val('Currency')],
+    ['Broker involved',val('Broker Involved')],
+    ['Broker / agent',val('Broker Name')],
+    ['Estimated budget',val('Estimated Budget')],
+    ['Referred by',val('Referred by')]
   ];
-
-  list.innerHTML = '';
-
-  rows.forEach(([k,v]) => {
-    const row = document.createElement('div');
-    row.className = 'review-row';
-
-    const key = document.createElement('span');
-    key.className = 'k';
-    key.textContent = k;
-
-    const value = document.createElement('span');
-    value.className = 'v';
-    value.textContent = v || '—';
-
-    row.appendChild(key);
-    row.appendChild(value);
-    list.appendChild(row);
+  list.innerHTML='';
+  rows.forEach(([k,v])=>{
+    const row=document.createElement('div');
+    row.className='review-row';
+    const key=document.createElement('span');key.className='k';key.textContent=k;
+    const value=document.createElement('span');value.className='v';value.textContent=v||'—';
+    row.appendChild(key);row.appendChild(value);list.appendChild(row);
   });
 }
 
 function updateJourney(){
-  stamps.forEach(s => {
-    const n = parseInt(s.dataset.s);
+  stamps.forEach(s=>{
+    const n=parseInt(s.dataset.s);
     s.classList.remove('done','active');
-
-    if(n < current) s.classList.add('done');
-    else if(n === current) s.classList.add('active');
+    if(n<current)s.classList.add('done');
+    else if(n===current)s.classList.add('active');
   });
-
-  tracks.forEach(t => {
-    const n = parseInt(t.dataset.t);
-    t.classList.toggle('done', n < current);
+  tracks.forEach(t=>{
+    const n=parseInt(t.dataset.t);
+    t.classList.toggle('done',n<current);
   });
 }
 
-nextBtn.addEventListener('click', () => {
-  const currentStepEl = document.querySelector(`.step[data-step="${current}"]`);
-
-  if(!validateStep(currentStepEl)) return;
-
-  if(current === total){
+nextBtn.addEventListener('click',async ()=>{
+  if(summaryMode){
     if(!document.getElementById('consentBox').checked){
       alert('Please confirm the details above before submitting.');
       return;
     }
 
-    /*
-      Manual workflow:
-      This page does NOT call the Zoho API and does NOT create a new Lead.
-      The Zoho Lead ID remains visible so the coordinator can match the
-      completed follow-up to the existing Lead manually.
-    */
-    form.style.display = 'none';
-    document.getElementById('journey').style.display = 'none';
-    successCard.style.display = 'block';
+    // The existing Lead must be identified by its Zoho Lead ID.
+    if(!leadId){
+      alert('This follow-up link is missing the Zoho Lead ID. Please use the link sent by the patient coordinator.');
+      return;
+    }
+
+    if(!ZOHO_FLOW_WEBHOOK_URL || ZOHO_FLOW_WEBHOOK_URL === 'PASTE_YOUR_ZOHO_FLOW_WEBHOOK_URL_HERE'){
+      alert('The Zoho Flow webhook URL has not been configured yet.');
+      return;
+    }
+
+    // Send the complete form as FORM DATA, matching the Webhook Trigger setting.
+    const formData = new FormData(form);
+    formData.set('Zoho Lead ID', leadId);
+
+    nextBtn.disabled = true;
+    nextBtn.textContent = 'Submitting...';
+
+    try{
+      await fetch(ZOHO_FLOW_WEBHOOK_URL,{
+        method:'POST',
+        body:new URLSearchParams(formData),
+        mode:'no-cors'
+      });
+
+      // Zoho Flow is configured for FORM DATA. The browser cannot inspect a
+      // no-cors response, but the POST request is dispatched to the webhook.
+      form.style.display='none';
+      journey.style.display='none';
+      successCard.style.display='block';
+    }catch(err){
+      console.error('Zoho Flow submission error:',err);
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Submit details';
+      alert('We could not submit your details. Please check your internet connection and try again.');
+    }
+    return;
+  }
+
+  const currentStepEl=document.querySelector(`.step[data-step="${current}"]`);
+  if(!validateStep(currentStepEl))return;
+
+  if(current===total){
+    buildReview();
+    summaryMode=true;
+    steps.forEach(s=>s.classList.remove('visible'));
+    summaryPage.classList.add('visible');
+    journey.style.display='none';
+    backBtn.style.visibility='visible';
+    nextBtn.textContent='Submit details';
+    window.scrollTo({top:0,behavior:'smooth'});
     return;
   }
 
   current++;
-
-  steps.forEach(s => {
-    s.classList.toggle(
-      'visible',
-      parseInt(s.dataset.step) === current
-    );
-  });
-
-  backBtn.style.visibility = 'visible';
-
-  if(current === total){
-    buildReview();
-    nextBtn.textContent = 'Submit details';
-  }
-
+  steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
+  backBtn.style.visibility='visible';
+  nextBtn.textContent='Continue';
   updateJourney();
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
-backBtn.addEventListener('click', () => {
-  if(current === 1) return;
+backBtn.addEventListener('click',()=>{
+  if(summaryMode){
+    summaryMode=false;
+    summaryPage.classList.remove('visible');
+    steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
+    journey.style.display='';
+    backBtn.style.visibility='visible';
+    nextBtn.textContent='Continue';
+    updateJourney();
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
 
+  if(current===1)return;
   current--;
-
-  steps.forEach(s => {
-    s.classList.toggle(
-      'visible',
-      parseInt(s.dataset.step) === current
-    );
-  });
-
-  backBtn.style.visibility = current === 1 ? 'hidden' : 'visible';
-  nextBtn.textContent = 'Continue';
-
+  steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
+  backBtn.style.visibility=current===1?'hidden':'visible';
+  nextBtn.textContent='Continue';
   updateJourney();
   window.scrollTo({top:0,behavior:'smooth'});
 });
