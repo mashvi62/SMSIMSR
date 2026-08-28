@@ -53,6 +53,7 @@ button:active{transform:scale(.98)}
 .btn-primary{background:var(--teal-dark);color:#fff;flex:1}.btn-primary:hover{background:var(--teal)}
 .btn-ghost{background:transparent;color:var(--ink-soft);padding:13px 10px}
 .review-list{margin-bottom:20px}
+.summary-page{display:none}.summary-page.visible{display:block}.summary-page h3{font-family:'Fraunces',serif;font-size:24px;margin:0 0 8px}.summary-page .summary-intro{color:var(--ink-soft);font-size:14px;line-height:1.5;margin:0 0 18px}
 .review-row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px}
 .review-row:last-child{border-bottom:none}.review-row .k{color:var(--ink-soft);flex-shrink:0}.review-row .v{text-align:right;font-weight:500;word-break:break-word}
 .consent{display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-soft);line-height:1.5;margin-bottom:20px}
@@ -332,6 +333,13 @@ button:active{transform:scale(.98)}
           </select>
         </div>
 
+      </div>
+
+      <!-- SUMMARY PAGE: shown on a new page after Estimated budget -->
+      <div class="summary-page" id="summaryPage">
+        <div class="step-label">Final page · Review & confirmation</div>
+        <h3>Please review your details</h3>
+        <p class="summary-intro">Please check the information below before submitting your care enquiry.</p>
         <div class="review-list" id="reviewList"></div>
 
         <label class="consent">
@@ -364,8 +372,11 @@ const nextBtn=document.getElementById('nextBtn');
 const backBtn=document.getElementById('backBtn');
 const form=document.getElementById('patientForm');
 const successCard=document.getElementById('successCard');
+const summaryPage=document.getElementById('summaryPage');
+const journey=document.getElementById('journey');
 let current=1;
 const total=steps.length;
+let summaryMode=false;
 
 const urlParams=new URLSearchParams(window.location.search);
 const leadId=urlParams.get('leadId');
@@ -477,10 +488,7 @@ function updateJourney(){
 }
 
 nextBtn.addEventListener('click',()=>{
-  const currentStepEl=document.querySelector(`.step[data-step="${current}"]`);
-  if(!validateStep(currentStepEl))return;
-
-  if(current===total){
+  if(summaryMode){
     if(!document.getElementById('consentBox').checked){
       alert('Please confirm the details above before submitting.');
       return;
@@ -494,25 +502,47 @@ nextBtn.addEventListener('click',()=>{
       The actual response-delivery method will be added separately.
     */
     form.style.display='none';
-    document.getElementById('journey').style.display='none';
+    journey.style.display='none';
     successCard.style.display='block';
+    return;
+  }
+
+  const currentStepEl=document.querySelector(`.step[data-step="${current}"]`);
+  if(!validateStep(currentStepEl))return;
+
+  if(current===total){
+    buildReview();
+    summaryMode=true;
+    steps.forEach(s=>s.classList.remove('visible'));
+    summaryPage.classList.add('visible');
+    journey.style.display='none';
+    backBtn.style.visibility='visible';
+    nextBtn.textContent='Submit details';
+    window.scrollTo({top:0,behavior:'smooth'});
     return;
   }
 
   current++;
   steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
   backBtn.style.visibility='visible';
-
-  if(current===total){
-    buildReview();
-    nextBtn.textContent='Submit details';
-  }
-
+  nextBtn.textContent='Continue';
   updateJourney();
   window.scrollTo({top:0,behavior:'smooth'});
 });
 
 backBtn.addEventListener('click',()=>{
+  if(summaryMode){
+    summaryMode=false;
+    summaryPage.classList.remove('visible');
+    steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
+    journey.style.display='';
+    backBtn.style.visibility='visible';
+    nextBtn.textContent='Continue';
+    updateJourney();
+    window.scrollTo({top:0,behavior:'smooth'});
+    return;
+  }
+
   if(current===1)return;
   current--;
   steps.forEach(s=>s.classList.toggle('visible',parseInt(s.dataset.step)===current));
