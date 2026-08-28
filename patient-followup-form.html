@@ -512,10 +512,10 @@ nextBtn.addEventListener('click',async ()=>{
       return;
     }
 
-    if(!ZOHO_FLOW_WEBHOOK_URL || ZOHO_FLOW_WEBHOOK_URL === 'https://flow.zoho.in/60085215290/flow/webhook/incoming?zapikey=1001.745b28ef5c35ee82b5664125977557a5.ab2ca0889aeff6e7122ea67d84fc8262&isdebug=false'){
-      alert('The Zoho Flow webhook URL has not been configured yet.');
-      return;
-    }
+  if(!ZOHO_FLOW_WEBHOOK_URL){
+    alert('The Zoho Flow webhook URL has not been configured yet.');
+    return;
+  }
 
     // Send the complete form as FORM DATA, matching the Webhook Trigger setting.
     const formData = new FormData(form);
