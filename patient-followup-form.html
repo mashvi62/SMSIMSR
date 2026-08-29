@@ -106,12 +106,12 @@ button:active{transform:scale(.98)}
         <div class="row2">
           <div class="field" data-req>
             <label>First name *</label>
-            <input type="text" name="First Name" autocomplete="given-name" required>
+            <input type="text" name="First Name" autocomplete="given-name" required readonly>
             <div class="err">Please enter your first name</div>
           </div>
           <div class="field" data-req>
             <label>Last name *</label>
-            <input type="text" name="Last Name" autocomplete="family-name" required>
+            <input type="text" name="Last Name" autocomplete="family-name" required readonly>
             <div class="err">Please enter your last name</div>
           </div>
         </div>
@@ -390,11 +390,15 @@ let summaryMode=false;
 
 const urlParams=new URLSearchParams(window.location.search);
 const leadId=urlParams.get('leadId');
+const firstName=urlParams.get('firstName') || '';
+const lastName=urlParams.get('lastName') || '';
 
 if(leadId){
   document.getElementById('leadIdDisplay').textContent=leadId;
   document.getElementById('leadIdBox').style.display='block';
   document.getElementById('leadIdHidden').value=leadId;
+  document.querySelector('[name="First Name"]').value=firstName;
+  document.querySelector('[name="Last Name"]').value=lastName;
 }else{
   console.warn('No Zoho Lead ID found in the URL.');
 }
